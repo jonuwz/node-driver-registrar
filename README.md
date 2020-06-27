@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.org/kubernetes-csi/node-driver-registrar.svg?branch=master)](https://travis-ci.org/kubernetes-csi/node-driver-registrar)
+# Hack
+This is just to workaround there being no official arm64 images. 
+```bash
+go get -d -v github.com/jonuwz/node-driver-registrar
+cd $GOPATH/src/github.com/jonuwz/node-driver-registrar
+make push-multiarch PULL_BASE_REF=<release-x.y | vx.y.z | master> REGISTRY_NAME=<YOUR DOCKER ID>  BUILD_PLATFORMS="linux amd64;linux arm64 -arm64"
+```
 
 # Node Driver Registrar
 
@@ -17,7 +23,7 @@ This information reflects the head of this branch.
 
 | Compatible with CSI Version                                                                | Container Image                                 | [Min K8s Version](https://kubernetes-csi.github.io/docs/kubernetes-compatibility.html#minimum-version) |
 | ------------------------------------------------------------------------------------------ | ----------------------------------------------- | --------------- |
-| [CSI Spec v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/csi-node-driver-registrar        | 1.13            |
+| [CSI Spec v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) |         jonuwz/csi-node-driver-registrar        | 1.13            |
 
 For release-0.4 and below, please refer to the [driver-registrar
 repository](https://github.com/kubernetes-csi/driver-registrar).
